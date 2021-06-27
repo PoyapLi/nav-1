@@ -1,12 +1,12 @@
 const $siteList = $(".siteList"); //jQuery开头用$，找到siteList
 const $lastLi = $siteList.find("li.last");
-const x = localStorage.getItem('x')
-const xObject = JSON.parse(x)  //把字符串重新变成对象
-const hashMap = xObject || [
+const website = localStorage.getItem('website')
+const websiteObject = JSON.parse(website)  //把字符串重新变成对象
+const hashMap = websiteObject || [
   { logo: "A", url: "https://www.acfun.cn" },
   {logo: "B", url: "https://www.bilibili.com"}
 ];  
-// 因为xObject一开始是空的，用户没用过，所以写成“如果xObject存在，使用xObject，如果不存在就用默认的数组（后面的代码）”
+// 因为xObject（此处x语义化命名为website）一开始是空的，用户没用过，所以写成“如果xObject存在，使用xObject，如果不存在就用默认的数组（后面的代码）”
 
 const simplifyUrl  = (url)=>{
   return url.replace('https://', '')
@@ -61,7 +61,7 @@ $(".addButton").on("click", () => {
 //localStorage是个全局变量，只能存字符串，不能存对象
 window.onbeforeunload = () =>{
     const string =  JSON.stringify(hashMap) //JSON.stringify()能把对象变成字符串
-    localStorage.setItem('x', string)  //在本地的存储里面设置一个x，值为string
+    localStorage.setItem('website', string)  //在本地的存储里面设置一个x，此处语义化命名为website，值为string
 }
 
 $(document).on('keypress', (e)=>{

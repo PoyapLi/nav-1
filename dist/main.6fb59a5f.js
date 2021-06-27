@@ -106,10 +106,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"epB2":[function(require,module,exports) {
 var $siteList = $(".siteList"); //jQuery开头用$，找到siteList
 var $lastLi = $siteList.find("li.last");
-var x = localStorage.getItem('x');
-var xObject = JSON.parse(x); //把字符串重新变成对象
-var hashMap = xObject || [{ logo: "A", url: "https://www.acfun.cn" }, { logo: "B", url: "https://www.bilibili.com" }];
-// 因为xObject一开始是空的，用户没用过，所以写成“如果xObject存在，使用xObject，如果不存在就用默认的数组（后面的代码）”
+var website = localStorage.getItem('website');
+var websiteObject = JSON.parse(website); //把字符串重新变成对象
+var hashMap = websiteObject || [{ logo: "A", url: "https://www.acfun.cn" }, { logo: "B", url: "https://www.bilibili.com" }];
+// 因为xObject（此处x语义化命名为website）一开始是空的，用户没用过，所以写成“如果xObject存在，使用xObject，如果不存在就用默认的数组（后面的代码）”
 
 var simplifyUrl = function simplifyUrl(url) {
   return url.replace('https://', '').replace('http://', '').replace('www.', '').replace('.cn', '').replace('.com', '').replace(/\/.*/, '');
@@ -149,7 +149,7 @@ $(".addButton").on("click", function () {
 //localStorage是个全局变量，只能存字符串，不能存对象
 window.onbeforeunload = function () {
   var string = JSON.stringify(hashMap); //JSON.stringify()能把对象变成字符串
-  localStorage.setItem('x', string); //在本地的存储里面设置一个x，值为string
+  localStorage.setItem('website', string); //在本地的存储里面设置一个x，此处语义化命名为website，值为string
 };
 
 $(document).on('keypress', function (e) {
@@ -162,4 +162,4 @@ $(document).on('keypress', function (e) {
   }
 });
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.25689409.map
+//# sourceMappingURL=main.6fb59a5f.map
